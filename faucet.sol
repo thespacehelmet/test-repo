@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: CC-BY-SA-4.0
 
 // Version of Solidity compiler this program was written for
-pragma solidity 0.8.11+commit.d7f03943.Emscripten.clang;
+pragma solidity 0.8.11;
 
 // Our first contract is a faucet!
 contract Faucet {
