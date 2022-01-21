@@ -171,6 +171,9 @@ interface IUniswapV2Router02 is IUniswapV2Router01 {
 
 contract SUNTOKEN {
 
+    
+    //mapping(_KeyType => _ValueType) _VariableName
+    
     mapping(address => uint) _balances;
     mapping(address => mapping(address => uint)) _allowances;
     mapping(address => bool) public isBlacklisted;
