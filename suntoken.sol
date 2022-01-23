@@ -184,7 +184,7 @@ contract SUNTOKEN {
     string _symbol;
 
     uint  _supply;
-    uint8 _decimals;
+    uint _decimals;
     uint public maxbuy_amount;
     uint deployTimestamp;
     uint blacklistedUsers;
@@ -204,7 +204,8 @@ contract SUNTOKEN {
     
     IUniswapV2Router02 uniswapV2Router = IUniswapV2Router02(router); //Interface call name
     ERC20 WBNB = ERC20(WBNB_address);
-    constructor() {
+  
+    constructor() public {
         _owner = msg.sender;
         
         _name = "SUNTOKEN";
@@ -239,12 +240,12 @@ contract SUNTOKEN {
         return _symbol;
     }
     
-    function decimals() public view returns(uint8) {
+    function decimals() public view returns(uint) {
         return _decimals;
     }
     
-    function totalSupply() public view returns(uint) {
-        return mul(_supply,(10 ** _decimals));
+    function totalSupply() public view returns(uint256) {
+        return _supply;
     }
     
     function balanceOf(address wallet) public view returns(uint) {
