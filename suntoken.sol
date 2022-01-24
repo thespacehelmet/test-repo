@@ -174,15 +174,21 @@ contract SUNTOKEN {
     
     //mapping(_KeyType => _ValueType) _VariableName
     
+    //Addresses key mapped to balances, allowances, blacklist (true/false), exclusion list (true/false), and timestamp
+
     mapping(address => uint) _balances;
     mapping(address => mapping(address => uint)) _allowances;
     mapping(address => bool) public isBlacklisted;
     mapping(address => bool) public isExcluded;
     mapping(address => uint) FirstBuyTimestamp;
 
+    //Declaring global variables
+
+    //String global variables
     string _name;
     string _symbol;
 
+    //uint global variables
     uint  _supply;
     uint _decimals;
     uint public maxbuy_amount;
@@ -190,29 +196,35 @@ contract SUNTOKEN {
     uint blacklistedUsers;
     uint _enableExtraTax;
     
+    //true/false global variables
     bool public swapEnabled;
     bool public collectTaxEnabled;
     bool public inSwap;
     bool public blacklistEnabled;
 
+    //address global variables
     address _owner;
     address uniswapV2Pair; //address of the pool
     address router = 0x10ED43C718714eb63d5aA57B78B54704E256024E; //ETH: 0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D  BSCtest: 0xD99D1c33F9fC3444f8101754aBC46c52416550D1   BSC: 0x10ED43C718714eb63d5aA57B78B54704E256024E
+    
+    //this function needs to be fixed
     address WBNB_address = 0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c; //ETHtest: 0xc778417e063141139fce010982780140aa0cd5ab BSCtest: 0xae13d989daC2f0dEbFf460aC112a837C89BAa7cd  BSC: 0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c
+    //adjust the above
+
     address wallet_team;
     address wallet_investment;
     
     IUniswapV2Router02 uniswapV2Router = IUniswapV2Router02(router); //Interface call name
     ERC20 WBNB = ERC20(WBNB_address);
   
+    //Arguements & functions passed at contract creation
     constructor() public {
+
         _owner = msg.sender;
-        
         _name = "SUNTOKEN";
         _symbol = "SUN";
-        _supply = 100000000000;  // 100 billion
+        _supply = 100000000000;  // 100 million
         _decimals = 6;
-        
         wallet_team = 0x830BBe006C2Ed0a4c815C9dBd193515e1c4B06cd;
         wallet_investment = 0x322a1594A4baC58662F7Aac8883a9628e2a69ADA;
         
@@ -264,6 +276,7 @@ contract SUNTOKEN {
         return router;
     }
     
+    //This function needs to be fixed
     function getWBNB() public view returns(address) {
         return WBNB_address;
     }
@@ -271,6 +284,8 @@ contract SUNTOKEN {
     event Transfer(address indexed from, address indexed to, uint amount);
     event Approval(address indexed fundsOwner, address indexed spender, uint amount);
 
+
+    //Function transfers from an address
     function _transfer(address from, address to, uint amount) internal returns(bool) {
         require(balanceOf(from) >= amount, "Insufficient balance.");
         require(isBlacklisted[from] == false && isBlacklisted[to] == false, "Blacklisted");
