@@ -24,6 +24,10 @@ abstract contract Context {
 }
 
 
+///WHAT IS AN ABSTRACT CONTRACT
+///INTERNAL VIEW VIRTUAL?
+
+
 /**
  * @dev Interface of the ERC20 standard as defined in the EIP.
  */
